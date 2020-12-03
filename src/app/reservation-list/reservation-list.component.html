@@ -1,0 +1,77 @@
+<div class="date">
+  {{reservationListDataService.date | async | moment:'ddd DD.MM.YYYY'}}
+</div>
+
+<div class="data-container">
+
+  <div class="stadiumField">
+    <form [formGroup]="selectStadiumForm">
+      <mat-form-field appearance="fill" *ngIf="stadiums">
+        <mat-label>Select a stadium</mat-label>
+        <mat-select formControlName="selectedStadiumName" value="selectedStadiumName" (selectionChange)="onChangeDate(selectedDate)">
+          <mat-option *ngFor="let stadium of stadiums" value="{{stadium.name}}">
+            {{stadium.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+    <mat-card class="example-card">
+      <img mat-card-image src="http://localhost:3000/{{selectedStadium.image}}" alt="Photo of a stadium">
+      <mat-card-content>
+        <p><b>Address: </b>{{selectedStadium.address}}</p>
+        <p><b>Phone: </b>+38{{selectedStadium.phone}}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="dataField">
+    <table>
+      <thead>
+      <tr>
+        <th class="halfWidth">Time</th>
+        <th class="halfWidth">Status</th>
+      </tr>
+      </thead>
+
+      <thead *ngIf="showSpinner">
+      <tr>
+        <th colspan="2">
+          <div class="spinnerContainer">
+            <mat-spinner></mat-spinner>
+          </div>
+        </th>
+      </tr>
+      </thead>
+
+      <thead *ngIf="showDataArrayError">
+      <tr>
+        <th colspan="2">
+          <div class="spinnerContainer mat-error">
+            {{showDataArrayError}}
+          </div>
+        </th>
+      </tr>
+      </thead>
+
+      <tbody *ngIf="dataArray">
+      <tr *ngFor="let el of dataArray">
+        <td class="halfWidth">
+          {{el.time}}
+        </td>
+        <td class="halfWidth status" [class.status]="el.status === 'Free'" [class.reserved]="el.status !== 'Free'" (click)="goToReserveTimeComponent(el)">
+          <span *ngIf="el.status !== 'Looking for an opponent'; else lookingForOpponentBlock">{{el.status}}</span>
+          <ng-template #lookingForOpponentBlock>
+            <span>{{el.status}}</span><br>
+            <span class="teamInfo">(team: {{el.team}}, {{el.name}}, tel.: +38{{el.phone}})</span>
+          </ng-template>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+
+
+

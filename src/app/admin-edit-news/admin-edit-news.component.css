@@ -1,0 +1,42 @@
+.editNews {
+  padding: 15px;
+}
+
+.divider {
+  margin-bottom: .5rem;
+}
+
+.newsTitleDesktop {
+  display: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .newsTitleDesktop {
+    display: block;
+  }
+
+  .newsTitlePhone {
+    display: none;
+  }
+}
+
+.inputField {
+  width: 100%;
+}
+
+.editButton {
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.EditStadiumSpinner {
+  margin-bottom: 1rem;
+}
+
+.deleteButton {
+  width: 100%;
+}
+
+.deleteStadiumSpinner {
+  margin-top: 1rem;
+}

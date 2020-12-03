@@ -1,0 +1,22 @@
+<div class="reservation-container mat-elevation-z8">
+  <div>
+    <app-selector></app-selector>
+  </div>
+  <div>
+    <app-calendar></app-calendar>
+  </div>
+  <div>
+    <div *ngIf="showStadiumSpinner">
+      <mat-spinner [diameter]="59"></mat-spinner>
+    </div>
+    <div class="mat-error" *ngIf="showStadiumArrayError">
+      {{showStadiumArrayError}}
+    </div>
+    <div *ngIf="stadiums">
+      <div *ngIf="stadiums.length; else requireStadiumBlock">
+        <app-reservation-list [stadiums]="stadiums"></app-reservation-list>
+      </div>
+      <ng-template #requireStadiumBlock>Please, create a stadium</ng-template>
+    </div>
+  </div>
+</div>

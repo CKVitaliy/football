@@ -1,0 +1,32 @@
+.createNews {
+  padding: 15px;
+}
+
+.mat-title {
+  margin: 0;
+}
+
+.inputField {
+  width: 100%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.createButton {
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.successButton:disabled {
+  width: 100%;
+  background-color: #6ca339;
+  color: white;
+  opacity: .6;
+}

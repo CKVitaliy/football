@@ -1,0 +1,39 @@
+<div class="createNews">
+  <div class="mat-title">Create news</div>
+
+  <form [formGroup]="createNewsForm">
+    <mat-form-field class="inputField">
+      <mat-label>Title</mat-label>
+      <input type="text" matInput formControlName="title" placeholder="paste a title..." (focusin)="clear()">
+      <mat-error *ngIf="createNewsForm.get('title').hasError('required')">
+        Title is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="inputField">
+      <mat-label>Text</mat-label>
+      <textarea matInput formControlName="text" placeholder="paste a text..." (focusin)="clear()"></textarea>
+      <mat-error *ngIf="createNewsForm.get('text').hasError('required')">
+        Text is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <div class="inputField">
+      <input type="file" accept="image/*" formControlName="image" (change)="onChangeImage($event)" (focusin)="clear()">
+    </div>
+
+    <button type="submit" class="createButton" mat-raised-button color="primary" (click)="createNews()"
+            [disabled]="!createNewsForm.valid || disableButton">Create
+    </button>
+    <div *ngIf="showSpinner">
+      <mat-spinner [diameter]="36"></mat-spinner>
+    </div>
+    <div *ngIf="showError">
+      <span class="mat-error">{{showError}}</span>
+    </div>
+    <div *ngIf="showSuccess">
+      <button mat-raised-button class="successButton" disabled>Created success</button>
+    </div>
+  </form>
+
+</div>

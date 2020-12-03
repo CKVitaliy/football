@@ -1,0 +1,54 @@
+<div class="admin-container mat-elevation-z8">
+  <div class="row">
+
+    <div class="column">
+      <mat-list role="list" class="adminList">
+        <mat-list-item role="listitem">
+          <button mat-stroked-button routerLink="createNews">Create news</button>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <button mat-stroked-button routerLink="editNews">Edit news</button>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <button mat-stroked-button routerLink="createStadium">Create stadium</button>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <button mat-stroked-button routerLink="editStadium">Edit stadium</button>
+        </mat-list-item>
+      </mat-list>
+    </div>
+
+<!--    <div class="column">
+      <mat-list role="list" class="adminList">
+        <mat-list-item role="listitem">
+          <button mat-stroked-button>Create a team</button>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <button mat-stroked-button>Edit a team</button>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <button mat-stroked-button>Create a player</button>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <button mat-stroked-button>Edit a player</button>
+        </mat-list-item>
+      </mat-list>
+    </div>-->
+
+<!--    <div class="column">
+      <mat-list role="list" class="adminList">
+        <mat-list-item role="listitem">
+          <button mat-stroked-button>Create a tournament</button>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <button mat-stroked-button>Edit a table</button>
+        </mat-list-item>
+      </mat-list>
+    </div>-->
+
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <router-outlet></router-outlet>
+</div>

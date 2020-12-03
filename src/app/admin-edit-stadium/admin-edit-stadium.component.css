@@ -1,0 +1,32 @@
+.editStadium {
+  padding: 15px;
+}
+
+.stadiumName {
+  justify-content: center;
+}
+
+.divider {
+  margin-bottom: .5rem;
+}
+
+.inputField {
+  width: 100%;
+}
+
+.editButton {
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.EditStadiumSpinner {
+  margin-bottom: 1rem;
+}
+
+.deleteButton {
+  width: 100%;
+}
+
+.deleteStadiumSpinner {
+  margin-top: 1rem;
+}

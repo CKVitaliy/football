@@ -1,0 +1,91 @@
+<div class="editStadium">
+  <div class="mat-title">
+    Edit stadium
+  </div>
+  <div *ngIf="showGetStadiumsArraySpinner">
+    <mat-spinner [diameter]="36"></mat-spinner>
+  </div>
+
+  <div *ngIf="showGetStadiumsArrayError">
+    <span class="mat-error">{{showGetStadiumsArrayError}}</span>
+  </div>
+
+  <div *ngIf="stadiumsArray.length">
+    <mat-accordion *ngFor="let el of stadiumsArray; index as i">
+      <mat-expansion-panel class="divider" hideToggle [expanded]="panelOpenState === i" (opened)="openPanel(i, el)">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="stadiumName">
+            <strong>{{el.name}}</strong>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <form [formGroup]="editStadiumForm" class="editNewsForm">
+          <mat-form-field class="inputField">
+            <mat-label>Name</mat-label>
+            <input type="text" matInput formControlName="name" (focusin)="clear()">
+            <mat-error *ngIf="editStadiumForm.get('name').hasError('required')">
+              Name is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="editStadiumForm.get('name').hasError('minlength')">
+              Name must contain at least 2 characters
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="inputField">
+            <mat-label>Address</mat-label>
+            <input type="text" matInput formControlName="address" (focusin)="clear()">
+            <mat-error *ngIf="editStadiumForm.get('address').hasError('required')">
+              Address is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="editStadiumForm.get('address').hasError('minlength')">
+              Address must contain at least 2 characters
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="inputField">
+            <mat-label>Phone</mat-label>
+            <span matPrefix>+38 &nbsp;</span>
+            <input type="text" matInput formControlName="phone" (focusin)="clear()" (keypress)="onlyNumber($event)">
+            <mat-error *ngIf="editStadiumForm.get('phone').hasError('required')">
+              Phone is <strong>required</strong>
+            </mat-error>
+            <mat-error
+              *ngIf="editStadiumForm.get('phone').hasError('minlength') || editStadiumForm.get('phone').hasError('maxlength')">
+              Phone must contain 10 digits
+            </mat-error>
+          </mat-form-field>
+
+          <input type="file" accept="image/*" formControlName="image" (change)="onChangeImage($event)"
+                 (focusin)="clear()">
+
+          <button type="submit" class="editButton" mat-raised-button color="primary" (click)="editStadium(el)"
+                  [disabled]="editStadiumForm.invalid || editStadiumForm.pristine || disableButton">Edit
+          </button>
+
+          <div class="EditStadiumSpinner" *ngIf="showEditStadiumSpinner">
+            <mat-spinner [diameter]="36"></mat-spinner>
+          </div>
+
+          <div class="EditStadiumSpinner" *ngIf="showEditStadiumError">
+            <div class="mat-error">{{showEditStadiumError}}</div>
+          </div>
+
+          <button class="deleteButton" mat-raised-button color="warn" (click)="deleteStadium(el)">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+          <div class="deleteStadiumSpinner" *ngIf="showDeleteStadiumSpinner">
+            <mat-spinner [diameter]="36"></mat-spinner>
+          </div>
+
+          <div class="deleteStadiumSpinner" *ngIf="showDeleteStadiumError">
+            <span class="mat-error">{{showDeleteStadiumError}}</span>
+          </div>
+        </form>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+
+</div>

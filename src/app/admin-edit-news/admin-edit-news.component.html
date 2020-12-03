@@ -1,0 +1,80 @@
+<div class="editNews">
+  <div class="mat-title">
+    Edit news
+    <!--    {{editNewsForm.value | json}}-->
+  </div>
+  <div *ngIf="showGetNewsArraySpinner">
+    <mat-spinner [diameter]="36"></mat-spinner>
+  </div>
+  <div *ngIf="showGetNewsArrayError">
+    <span class="mat-error">{{showGetNewsArrayError}}</span>
+  </div>
+
+  <div *ngIf="newsArray.length">
+    <mat-accordion *ngFor="let el of newsArraySliced; index as i">
+      <mat-expansion-panel class="divider" hideToggle [expanded]="panelOpenState === i" (opened)="openPanel(i, el)">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{el.date}}
+          </mat-panel-title>
+          <mat-panel-description class="newsTitlePhone">
+            {{el.title | truncate}}
+          </mat-panel-description>
+          <mat-panel-description class="newsTitleDesktop">
+            {{el.title | truncate: [75]}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <form [formGroup]="editNewsForm" class="editNewsForm">
+          <mat-form-field class="inputField">
+            <mat-label>Title</mat-label>
+            <input type="text" matInput formControlName="title" (focusin)="clear()">
+            <mat-error *ngIf="editNewsForm.get('title').hasError('required')">
+              Title is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="inputField">
+            <mat-label>Text</mat-label>
+            <textarea matInput formControlName="text" (focusin)="clear()"></textarea>
+            <mat-error *ngIf="editNewsForm.get('text').hasError('required')">
+              Text is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <input type="file" accept="image/*" formControlName="image" (change)="onChangeImage($event)"
+                 (focusin)="clear()">
+
+          <button type="submit" class="editButton" mat-raised-button color="primary" (click)="editNews(el)"
+                  [disabled]="editNewsForm.invalid || editNewsForm.pristine || disableButton">Edit
+          </button>
+
+          <div class="EditStadiumSpinner" *ngIf="showEditNewsSpinner">
+            <mat-spinner [diameter]="36"></mat-spinner>
+          </div>
+
+          <div class="EditStadiumSpinner" *ngIf="showEditNewsError">
+            <div class="mat-error">{{showEditNewsError}}</div>
+          </div>
+
+          <button class="deleteButton" mat-raised-button color="warn" (click)="deleteNews(el)">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+          <div class="deleteStadiumSpinner" *ngIf="showDeleteNewsSpinner">
+            <mat-spinner [diameter]="36"></mat-spinner>
+          </div>
+
+          <div class="deleteStadiumSpinner" *ngIf="showDeleteNewsError">
+            <span class="mat-error">{{showDeleteNewsError}}</span>
+          </div>
+        </form>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-paginator [length]="newsArray.length" [pageSize]="5" (page)="pageChange($event)"
+                   showFirstLastButtons></mat-paginator>
+  </div>
+</div>
+

@@ -1,0 +1,31 @@
+<div class="mat-elevation-z8">
+
+  <div class="spinner" *ngIf="showSpinner">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div class="card-container" *ngIf="newsArray.length">
+    <div *ngFor="let element of newsArraySliced">
+      <div>
+        <div class="card">
+          <div>
+            <img src="http://localhost:3000/{{element.image}}" class="img" alt="{{element.title}}">
+          </div>
+          <div class="card-info">
+            <div class="title">
+              <a href="#" class="title">{{element.title}}</a>
+            </div>
+            <div class="date">
+              <span class="date">{{element.date}}</span>
+            </div>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+      </div>
+    </div>
+    <mat-paginator [length]="newsArray.length" [pageSize]="5" (page)="pageChange($event)"
+                   showFirstLastButtons></mat-paginator>
+  </div>
+
+</div>
+

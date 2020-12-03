@@ -1,0 +1,25 @@
+.toolbarClass {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 0 1rem 0;
+  background-image: url('./../assets/images/shirt1.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.components {
+  background-color: #ffffff;
+  width: 80%;
+}
+
+.footer {
+  background-color: #ffffff;
+  width: 80%;
+  margin-top: 1rem;
+}

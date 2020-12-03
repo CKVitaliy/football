@@ -1,0 +1,10 @@
+.pageNotFoundContainer {
+  padding: 2rem;
+}
+
+.noRoute {
+  background-image: url("../../assets/images/no-results.gif");
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 31rem;
+}

@@ -1,0 +1,5 @@
+<p>
+  <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="changeMonth(-1)">arrow_left</mat-icon>
+  <span>{{reservationListDataService.date | async | moment}}</span>
+  <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="changeMonth(1)">arrow_right</mat-icon>
+</p>

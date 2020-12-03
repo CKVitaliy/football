@@ -1,0 +1,16 @@
+p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+p span {
+  width: 200px;
+  text-align: center;
+  padding: 0 2rem;
+  font-weight: bold;
+}
+
+p mat-icon {
+  cursor: pointer;
+}

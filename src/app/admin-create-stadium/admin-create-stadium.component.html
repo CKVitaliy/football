@@ -1,0 +1,59 @@
+<div class="createStadium">
+  <div class="mat-title">Create stadium</div>
+
+  <form [formGroup]="createStadiumForm">
+    <mat-form-field class="inputField">
+      <mat-label>Name</mat-label>
+      <input type="text" matInput formControlName="name" placeholder="paste a name..." (focusin)="clear()">
+      <mat-error *ngIf="createStadiumForm.get('name').hasError('required')">
+        Name is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="createStadiumForm.get('name').hasError('minlength')">
+        Name must contain at least 2 characters
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="inputField">
+      <mat-label>Address</mat-label>
+      <input type="text" matInput formControlName="address" placeholder="paste an address..." (focusin)="clear()">
+      <mat-error *ngIf="createStadiumForm.get('address').hasError('required')">
+        Address is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="createStadiumForm.get('address').hasError('minlength')">
+        Address must contain at least 2 characters
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="inputField">
+      <mat-label>Phone</mat-label>
+      <span matPrefix>+38 &nbsp;</span>
+      <input type="text" matInput formControlName="phone" placeholder="paste a phone..." (focusin)="clear()"
+             (keypress)="onlyNumber($event)">
+      <mat-error *ngIf="createStadiumForm.get('phone').hasError('required')">
+        Phone is <strong>required</strong>
+      </mat-error>
+      <mat-error
+        *ngIf="createStadiumForm.get('phone').hasError('minlength') || createStadiumForm.get('phone').hasError('maxlength')">
+        Phone must contain 10 digits
+      </mat-error>
+    </mat-form-field>
+
+    <div>
+      <input type="file" accept="image/*" formControlName="image" (change)="onChangeImage($event)" (focusin)="clear()">
+    </div>
+
+    <button type="submit" class="createButton" mat-raised-button color="primary" (click)="createStadium()"
+            [disabled]="!createStadiumForm.valid || disableButton">Create
+    </button>
+    <div *ngIf="showSpinner">
+      <mat-spinner [diameter]="36"></mat-spinner>
+    </div>
+    <div *ngIf="showError">
+      <span class="mat-error">{{showError}}</span>
+    </div>
+    <div *ngIf="showSuccess">
+      <button mat-raised-button class="successButton" disabled>Created success</button>
+    </div>
+  </form>
+
+</div>

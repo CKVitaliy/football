@@ -1,0 +1,66 @@
+.date {
+  font-weight: bold;
+}
+
+.stadiumField {
+  margin: .5rem 0 .5rem 0;
+}
+
+.stadiumField .mat-form-field {
+  width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+  .data-container {
+    display: flex;
+    margin-top: .5rem;
+  }
+  .stadiumField {
+    width: 33%;
+    margin: 0 1rem 0 0;
+  }
+  .dataField {
+    width: 67%;
+  }
+}
+
+.spinnerContainer {
+  display: flex;
+  justify-content: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th, td {
+  border: 1px solid #000000;
+  padding: .5rem 0;
+}
+
+table th {
+  background-color: #eeeeee;
+}
+
+table td {
+  text-align: center;
+  transition: all .2s;
+}
+
+.halfWidth {
+  width: 50%;
+}
+
+.status:hover:not(.reserved) {
+  cursor: pointer;
+  background-color: #eeeeee;
+}
+
+.reserved {
+  background-color: #eeeeee;
+}
+
+.teamInfo {
+  font-size: small;
+}

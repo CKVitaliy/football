@@ -1,0 +1,72 @@
+<div class="reserveTime-container">
+
+  <div>
+    Date: {{date}}<br>
+    Stadium: {{stadiumName}}<br>
+    Time: {{time}}
+  </div>
+
+  <form [formGroup]="reservationForm" class="reservationForm" *ngIf="!successReserved; else elseBlock">
+    <mat-form-field>
+      <mat-label>Team</mat-label>
+      <input type="text" matInput formControlName="team" placeholder="paste a team..." (focusin)="clearReservedDate()">
+      <mat-error *ngIf="reservationForm.get('team').hasError('required')">
+        Team is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="reservationForm.get('team').hasError('minlength')">
+        Team must contain at least 2 characters
+      </mat-error>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field class="inputField">
+      <mat-label>Name</mat-label>
+      <input type="text" matInput formControlName="name" placeholder="paste a name..." (focusin)="clearReservedDate()">
+      <mat-error *ngIf="reservationForm.get('name').hasError('required')">
+        Name is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="reservationForm.get('name').hasError('minlength')">
+        Name must contain at least 2 characters
+      </mat-error>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field class="inputField">
+      <mat-label>Phone</mat-label>
+      <span matPrefix>+38 &nbsp;</span>
+      <input id="phone" type="text" matInput formControlName="phone" placeholder="paste a phone..."
+             (focusin)="clearReservedDate()" (keypress)="onlyNumber($event)">
+      <mat-error *ngIf="reservationForm.get('phone').hasError('required')">
+        Phone is <strong>required</strong>
+      </mat-error>
+      <mat-error
+        *ngIf="reservationForm.get('phone').hasError('minlength') || reservationForm.get('phone').hasError('maxlength')">
+        Phone must contain 10 digits
+      </mat-error>
+    </mat-form-field>
+    <br>
+
+    <mat-checkbox class="checkbox" formControlName="lookingOpponent">Looking for an opponent</mat-checkbox>
+
+    <button type="submit" class="submitButton" mat-raised-button color="primary" (click)="reserve()"
+            [disabled]="!reservationForm.valid || disableButton">Submit
+    </button>
+
+    <div *ngIf="showSpinner">
+      <mat-spinner [diameter]="36"></mat-spinner>
+    </div>
+
+    <div *ngIf="showDataArrayError">
+      <div class="mat-error">
+        {{showDataArrayError}}
+      </div>
+    </div>
+  </form>
+
+  <ng-template #elseBlock>
+    <button class="successButton" mat-raised-button disabled>
+      Reserved success
+    </button>
+  </ng-template>
+
+</div>
